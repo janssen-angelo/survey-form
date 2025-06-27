@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hotel Guest Experience Survey</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #2e7d32);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .header img {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .header h2 {
+      margin: 0;
+      text-align: center;
+      color: #4caf50;
+      margin-bottom: 30px;
+      font-size: 2.4em;
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.07);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 900px;
+      margin: 60px auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+      border: 1px solid #4caf50;
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4caf50;
+      margin-bottom: 30px;
+    }
+
+    fieldset {
+      border: 1px solid #4caf50;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    legend {
+      color: #4caf50;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      background-color: #689260;
+      color: #f0f0f0;
+      border: 1px solid #4caf50;
+      border-radius: 5px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    textarea::placeholder {
+      color: #d3d3d3;
+      opacity: 1;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      margin: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background-color: #388e3c;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .moving-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .moving-shapes span {
+      position: absolute;
+      display: block;
+      width: 30px;
+      height: 30px;
+      background: rgba(234, 76, 171, 0.45);
+      animation: float 14s linear infinite;
+      border-radius: 50%;
+    }
+ .moving-shapes span:nth-child(1) { left: 5%; top: 10%; animation-delay: 0s; }
+.moving-shapes span:nth-child(2) { left: 10%; top: 70%; animation-delay: 1s; }
+.moving-shapes span:nth-child(3) { left: 15%; top: 30%; animation-delay: 1s; }
+.moving-shapes span:nth-child(4) { left: 20%; top: 80%; animation-delay: 1s; }
+.moving-shapes span:nth-child(5) { left: 25%; top: 20%; animation-delay: 1s; }
+.moving-shapes span:nth-child(6) { left: 30%; top: 60%; animation-delay: 5s; }
+.moving-shapes span:nth-child(7) { left: 35%; top: 40%; animation-delay: 6s; }
+.moving-shapes span:nth-child(8) { left: 40%; top: 90%; animation-delay: 7s; }
+.moving-shapes span:nth-child(9) { left: 45%; top: 10%; animation-delay: 1s; }
+.moving-shapes span:nth-child(10) { left: 50%; top: 50%; animation-delay: 9s; }
+.moving-shapes span:nth-child(11) { left: 55%; top: 30%; animation-delay: 1s; }
+.moving-shapes span:nth-child(12) { left: 60%; top: 75%; animation-delay: 1s; }
+.moving-shapes span:nth-child(13) { left: 65%; top: 20%; animation-delay: 1s; }
+.moving-shapes span:nth-child(14) { left: 70%; top: 85%; animation-delay: 1s; }
+.moving-shapes span:nth-child(15) { left: 75%; top: 35%; animation-delay: 1s; }
+.moving-shapes span:nth-child(16) { left: 80%; top: 60%; animation-delay: 1s; }
+.moving-shapes span:nth-child(17) { left: 85%; top: 15%; animation-delay: 1s; }
+.moving-shapes span:nth-child(18) { left: 90%; top: 70%; animation-delay: 1s; }
+.moving-shapes span:nth-child(19) { left: 95%; top: 25%; animation-delay: 1s; }
+.moving-shapes span:nth-child(20) { left: 20%; top: 5%; animation-delay: 1s; }
+.moving-shapes span:nth-child(21) { left: 35%; top: 15%; animation-delay: 1s; }
+.moving-shapes span:nth-child(22) { left: 60%; top: 5%; animation-delay: 2s; }
+.moving-shapes span:nth-child(23) { left: 75%; top: 10%; animation-delay: 2s; }
+.moving-shapes span:nth-child(24) { left: 50%; top: 95%; animation-delay: 3s; }
+.moving-shapes span:nth-child(25) { left: 10%; top: 50%; animation-delay: 4s; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-50px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="moving-shapes">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <img src="pp.png" alt="Hotel Logo">
+      <h2>Hotel Guest Experience Survey</h2>
+    </div>
+
+    <form id="googleForm">
+      <fieldset>
+        <legend>Personal Information</legend>
+        <label>Full Name:</label>
+        <input type="text" name="name" required>
+        <label>Email Address:</label>
+        <input type="email" name="email">
+        <label>Age:</label>
+        <input type="number" name="age" min="10" max="100">
+      </fieldset>
+
+      <fieldset>
+        <legend>Hotel Stay Experience</legend>
+        <p>How would you rate your overall stay?</p>
+        <label><input type="radio" name="stay_rating" value="excellent"> Excellent</label><br>
+        <label><input type="radio" name="stay_rating" value="good"> Good</label><br>
+        <label><input type="radio" name="stay_rating" value="average"> Average</label><br>
+        <label><input type="radio" name="stay_rating" value="poor"> Poor</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Specific Service Ratings</legend>
+        <label>Room Cleanliness:</label>
+        <select name="room_cleanliness">
+          <option value="">--Select--</option>
+          <option>Excellent</option>
+          <option>Good</option>
+          <option>Fair</option>
+          <option>Poor</option>
+        </select>
+        <label>Staff Friendliness:</label>
+        <select name="staff_friendliness">
+          <option value="">--Select--</option>
+          <option>Excellent</option>
+          <option>Good</option>
+          <option>Fair</option>
+          <option>Poor</option>
+        </select>
+        <label>Amenities (Pool, Gym, etc.):</label>
+        <select name="amenities">
+          <option value="">--Select--</option>
+          <option>Excellent</option>
+          <option>Good</option>
+          <option>Fair</option>
+          <option>Poor</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+  <legend>Hotel Services Used</legend>
+  <p>Which of the following did you use during your stay?</p>
+  <label><input type="checkbox" name="services[]" value="room service"> Room Service</label><br>
+  <label><input type="checkbox" name="services[]" value="pool"> Swimming Pool</label><br>
+  <label><input type="checkbox" name="services[]" value="spa"> Spa</label><br>
+  <label><input type="checkbox" name="services[]" value="gym"> Fitness Center</label><br>
+  <label><input type="checkbox" name="services[]" value="restaurant"> In-House Restaurant</label><br>
+  <label><input type="checkbox" name="services[]" value="concierge"> Concierge</label>
+</fieldset>
+
+
+      <fieldset>
+        <legend>Preferred Contact Method</legend>
+        <label>How would you like to receive future promotions?</label>
+        <select name="contact_method">
+          <option value="">--Please choose--</option>
+          <option value="email">Email</option>
+          <option value="phone">Phone</option>
+          <option value="sms">SMS</option>
+          <option value="viber">Viber</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend>Feedback & Suggestions</legend>
+        <label>Please share your comments:</label>
+        <textarea name="comments" rows="5" placeholder="Tell us what you loved and how we can improve..."></textarea>
+      </fieldset>
+
+      <div class="center">
+        <input type="reset" value="Reset Form">
+        <input type="submit" value="Submit Survey">
+      </div>
+    </form>
+  </div>
+
+
+<script>
+
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzSDZe4J7qzdVzZlC0Tz4OpWABCbNjVhJW7LRujuiU4gaWOzmNvKigpbpWDzIJOFg7Ttw/exec';
+
+  const form = document.getElementById('googleForm');
+
+ 
+
+//When the user clicks the submit button, this function runs.
+
+  form.addEventListener('submit', e => {
+
+    e.preventDefault(); //This stops the browser’s default action of reloading
+
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+
+      .then(response => {
+
+        alert("Form submitted successfully!");
+
+        form.reset();
+
+      })
+
+      .catch(error => alert('Error!', error.message));
+
+  });
+
+</script>
+
+
+</body>
+</html>
